@@ -38,7 +38,9 @@ final class FunWeatherService: WeatherProvider {
     private var itemCache = [String:WeatherItem]()
     
     func attribution() async throws -> WeatherAttribution? {
-        return nil
+        return WeatherAttribution(darkSchemeURL: Self.darkAttributeURL,
+                                  lightSchemeURL: Self.lightAttributeURL,
+                                  legalURL: nil)
     }
     
     func weather(for address: String) async throws -> WeatherItem? {
@@ -53,3 +55,13 @@ final class FunWeatherService: WeatherProvider {
         return weather.item
     }
 }
+
+extension FunWeatherService {
+    static private var darkAttributeURL: URL {
+        URL(string: "https://tinyurl.com/bde3san2")!
+    }
+    static private var lightAttributeURL: URL {
+        URL(string: "https://tinyurl.com/42jkd89n")!
+    }
+}
+
